@@ -1,37 +1,64 @@
-# Zustand example
+# Weather App
 
-This example shows how to integrate Zustand in Next.js.
+## Objective
 
-Usually splitting your app state into `pages` feels natural but sometimes you'll want to have global state for your app. This is an example on how you can use Zustand that also works with Next.js's universal rendering approach.
+Build a weather application that allows users to search for the current weather conditions of a city, utilizing WeatherAPI service. The project was developed using Next.js, TypeScript, Zustand for state management, Tailwind for styling, and tested with Jest and React Testing Library.
 
-In the first example we are going to display a digital clock that updates every second. The first render is happening in the server and then the browser will take over. To illustrate this, the server rendered clock will have a different background color (black) than the client one (grey).
+### Environment Variables
 
-To illustrate SSG, go to `/ssg` and to illustrate SSR go to `/`, those pages are using Next.js data fetching methods to get the date in the server and return it as props to the page, and then the browser will hydrate the store and continue updating the date.
+- `GOOGLE_API_KEY`: For getting the autocomplete locations.
+- `WEATHER_API_KEY`: For fetching weather data.
 
-The trick here for supporting universal Zustand is to separate the cases for the client and the server. When we are on the server we want to create a new store every time with the `initialZustandState` returned from the get\*Props methods.
+## Setup
 
-All components have access to the Zustand store using `useStore()` returned `store.ts` file.
+1. **Clone the repository**:
 
-## Deploy your own
+   ```bash
+   git clone https://github.com/Tooluloope/weather-app.git
+   ```
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-zustand)
+2. **Navigate to the project directory**:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-zustand&project-name=with-zustand&repository-name=with-zustand)
+   ```bash
+   cd weather-app
+   ```
 
-## How to use
+3. **Install dependencies**:
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+   ```bash
+   yarn
+   ```
+
+4. **Add environment variables**: Create a `.env` file at the root of the project and add your API keys:
+
+   ```env
+   GOOGLE_API_KEY=your_google_api_key
+   WEATHER_API_KEY=your_weather_api_key
+   ```
+
+5. **Start the development server**:
+
+   ```bash
+   yarn dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Testing
+
+Run the tests using the following command:
 
 ```bash
-npx create-next-app --example with-zustand with-zustand-app
+yarn test
 ```
 
-```bash
-yarn create next-app --example with-zustand with-zustand-app
-```
+## Technologies Used
 
-```bash
-pnpm create next-app --example with-zustand with-zustand-app
-```
+- **Next.js & TypeScript**: For development.
+- **Zustand**: State management.
+- **Tailwind**: Styling.
+- **Jest & React Testing Library**: Testing.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Deployment
+
+The app is deployed on [Vercel](https://weather-app-phi-dusky.vercel.app/).
