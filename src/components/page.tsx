@@ -1,22 +1,12 @@
-import useInterval from '../lib/useInterval'
-import Clock from './clock'
-import Counter from './counter'
-import Nav from './nav'
-import { useStore } from '../lib/store'
+import { useStore } from "@/lib/store";
+import Navbar from "./Navbar";
+import Body from "./Body";
 
 export default function Page() {
-  const tick = useStore((store) => store.tick)
-
-  // Tick the time every second
-  useInterval(() => {
-    tick(Date.now(), true)
-  }, 1000)
-
-  return (
-    <>
-      <Nav />
-      <Clock />
-      <Counter />
-    </>
-  )
+	return (
+		<div className=" min-h-screen w-screen mt-20 container mx-auto overflow-x-hidden">
+			<Navbar />
+			<Body />
+		</div>
+	);
 }

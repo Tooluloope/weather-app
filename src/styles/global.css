@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		@apply text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900;
+	}
+}
+
+.container {
+	width: 100%;
+}
+@media (min-width: 640px) {
+	.container {
+		max-width: 640px;
+	}
+}
+@media (min-width: 768px) {
+	.container {
+		max-width: 720px;
+	}
+}
+@media (min-width: 1024px) {
+	.container {
+		max-width: 960px;
+	}
+}
+@media (min-width: 1280px) {
+	.container {
+		max-width: 1140px;
+	}
+}
+@media (min-width: 1536px) {
+	.container {
+		max-width: 1320px;
+	}
+}

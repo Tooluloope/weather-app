@@ -1,10 +1,15 @@
-import StoreProvider from '@/lib/StoreProvider'
-import type { AppProps } from 'next/app'
+import HydrationZustand from "@/lib/Hydration";
+import type { AppProps } from "next/app";
+import { ThemeProvider } from "next-themes";
+
+import "@/styles/global.css";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <StoreProvider {...pageProps.initialZustandState}>
-      <Component {...pageProps} />
-    </StoreProvider>
-  )
+	return (
+		<HydrationZustand>
+			<ThemeProvider enableSystem={true} attribute="class">
+				<Component {...pageProps} />{" "}
+			</ThemeProvider>
+		</HydrationZustand>
+	);
 }

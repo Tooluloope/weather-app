@@ -1,62 +1,34 @@
-import { createContext, useContext } from 'react'
-import { createStore, useStore as useZustandStore } from 'zustand'
+import { WeatherResponseData } from "@/components/utils/types";
+import { shallowEqual } from "fast-equals";
+import { createWithEqualityFn } from "zustand/traditional";
 
 interface StoreInterface {
-  lastUpdate: number
-  light: boolean
-  count: number
-  tick: (lastUpdate: number, light: boolean) => void
-  increment: () => void
-  decrement: () => void
-  reset: () => void
+	weatherData: WeatherResponseData;
+	isLoading: boolean;
+	setWeatherData: (weatherData: WeatherResponseData) => void;
+	setIsLoading: (isLoading: boolean) => void;
 }
 
 const getDefaultInitialState = () => ({
-  lastUpdate: Date.now(),
-  light: false,
-  count: 0,
-})
+	weatherData: {} as WeatherResponseData,
+	isLoading: false,
+});
 
-export type StoreType = ReturnType<typeof initializeStore>
+export type StoreType = ReturnType<typeof useStore>;
 
-const zustandContext = createContext<StoreType | null>(null)
-
-export const Provider = zustandContext.Provider
-
-export const useStore = <T>(selector: (state: StoreInterface) => T) => {
-  const store = useContext(zustandContext)
-
-  if (!store) throw new Error('Store is missing the provider')
-
-  return useZustandStore(store, selector)
-}
-
-export const initializeStore = (
-  preloadedState: Partial<StoreInterface> = {}
-) => {
-  return createStore<StoreInterface>((set, get) => ({
-    ...getDefaultInitialState(),
-    ...preloadedState,
-    tick: (lastUpdate, light) => {
-      set({
-        lastUpdate,
-        light: !!light,
-      })
-    },
-    increment: () => {
-      set({
-        count: get().count + 1,
-      })
-    },
-    decrement: () => {
-      set({
-        count: get().count - 1,
-      })
-    },
-    reset: () => {
-      set({
-        count: getDefaultInitialState().count,
-      })
-    },
-  }))
-}
+export const useStore = createWithEqualityFn<StoreInterface>(
+	set => ({
+		...getDefaultInitialState(),
+		setWeatherData: weatherData => {
+			set({
+				weatherData,
+			});
+		},
+		setIsLoading: isLoading => {
+			set({
+				isLoading,
+			});
+		},
+	}),
+	shallowEqual
+);
