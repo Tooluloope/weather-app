@@ -13,13 +13,21 @@ export function usePlacesAutocomplete(
 
 	useEffect(() => {
 		if (selectedOption === input) return;
+
+		const controller = new AbortController();
+		const { signal } = controller;
+
 		const handleDebounce = setTimeout(async () => {
 			setIsAutocompleteLoading(true);
 			try {
 				if (!input) {
 					return;
 				}
-				const response = await fetch("/api/autocomplete?input=" + input);
+				const response = await fetch("/api/autocomplete?input=" + input, {
+					signal,
+				});
+				if (signal.aborted) return;
+
 				const data = await response.json();
 
 				if (!response.ok || data.error_message) {
@@ -28,7 +36,9 @@ export function usePlacesAutocomplete(
 
 				setPredictions(data.predictions);
 			} catch (e) {
-				toast.error(String(e));
+				if (e instanceof Error && e.name !== "AbortError") {
+					toast.error(e.message);
+				}
 			} finally {
 				setIsAutocompleteLoading(false);
 			}
@@ -36,6 +46,7 @@ export function usePlacesAutocomplete(
 
 		return () => {
 			clearTimeout(handleDebounce);
+			controller.abort();
 		};
 	}, [input, selectedOption, debounceTimeout]);
 
