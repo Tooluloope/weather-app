@@ -43,6 +43,7 @@ const Select = React.forwardRef((_, ref: React.Ref<{ focus: () => void }>) => {
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(e.target.value);
+		setIsOpen(true);
 	};
 
 	const handleOptionClick = async (place: string) => {
