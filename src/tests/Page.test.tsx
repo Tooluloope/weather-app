@@ -73,7 +73,6 @@ it("handles a successful fetch", async () => {
 });
 
 it("handles a fetch with an error response", async () => {
-	// Arrange
 	const errorMessage = "Some error message";
 	(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValueOnce({
 		ok: false,
