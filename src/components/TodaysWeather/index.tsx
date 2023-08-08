@@ -6,10 +6,10 @@ const TodaysWeather = () => {
 		store => store.weatherData.forecast.forecastday[0].hour
 	);
 	return (
-		<div className=" overflow-x-scroll hide-scroll-bar my-5">
+		<div className=" my-5">
 			<p className="w-full mb-5 text-xl md:text-2xl">Today's weather</p>
 
-			<div className="flex justify-start flex-nowrap  overflow-x-scroll w-full">
+			<div className="flex justify-start flex-nowrap  overflow-x-scroll w-full no-scrollbar">
 				{hour.map((hour, index) => (
 					<WeatherHourlyCard
 						key={index}
