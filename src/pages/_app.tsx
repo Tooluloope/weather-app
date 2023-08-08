@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<HydrationZustand>
 			<ThemeProvider enableSystem={true} attribute="class">
-				<Component {...pageProps} />{" "}
+				<Component {...pageProps} />
 			</ThemeProvider>
 		</HydrationZustand>
 	);

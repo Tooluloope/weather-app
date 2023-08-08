@@ -1,8 +1,6 @@
 import TodaysWeather from "../TodaysWeather";
 import WeatherForecast from "../WeatherForecast";
 import CurrentWeather from "../CurrentWeather";
-import { useStore } from "@/lib/store";
-import { useRef } from "react";
 
 const Body = () => {
 	return (

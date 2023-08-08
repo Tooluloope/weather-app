@@ -56,7 +56,7 @@ const Select = React.forwardRef((_, ref: React.Ref<{ focus: () => void }>) => {
 			const weatherData = (await weatherResponse.json()) as WeatherResponseData;
 
 			if (!weatherResponse.ok || weatherData.error_message) {
-				throw new Error(weatherData.error_message); // or handle more specifically based on status code
+				throw new Error(weatherData.error_message);
 			}
 
 			setWeatherData(weatherData);
@@ -77,7 +77,7 @@ const Select = React.forwardRef((_, ref: React.Ref<{ focus: () => void }>) => {
 			<input
 				ref={inputRef}
 				type="text"
-				placeholder="Search for cities"
+				placeholder="Search for Places, cities, countries ..."
 				value={search}
 				onChange={handleSearch}
 				className="bg-gray-100 dark:bg-gray-800 dark:text-gray-100 text-gray-900 px-4 py-2 rounded-lg w-full outline-none "

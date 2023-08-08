@@ -23,7 +23,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 				params: {
 					q,
 					days,
-					key: process.env.WEATHER_API_KEY, // Stored as an environment variable
+					key: process.env.WEATHER_API_KEY,
 				},
 			}
 		);

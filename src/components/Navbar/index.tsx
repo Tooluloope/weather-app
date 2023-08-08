@@ -29,7 +29,10 @@ const Navbar: React.FC<{ inputRef: React.Ref<{ focus: () => void }> }> = ({
 		}
 	};
 	return (
-		<nav className=" fixed top-0 left-0 w-screen  py-3  shadow z-50 bg-white dark:bg-slate-900">
+		<nav
+			data-testid="navbar"
+			className=" fixed top-0 left-0 w-screen  py-3  shadow z-50 bg-white dark:bg-slate-900"
+		>
 			<div className=" flex justify-between items-center container mx-auto px-5">
 				<Select ref={inputRef} />
 

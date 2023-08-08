@@ -10,7 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			{
 				params: {
 					input,
-					key: process.env.GOOGLE_API_KEY, // Stored as an environment variable
+					key: process.env.GOOGLE_API_KEY,
 				},
 			}
 		);
