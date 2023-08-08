@@ -1,5 +1,6 @@
 import { PlaceAutocompleteResult } from "@googlemaps/google-maps-services-js";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 export function usePlacesAutocomplete(
 	input = "",
@@ -18,13 +19,16 @@ export function usePlacesAutocomplete(
 				if (!input) {
 					return;
 				}
-
 				const response = await fetch("/api/autocomplete?input=" + input);
 				const data = await response.json();
 
+				if (!response.ok || data.error_message) {
+					throw new Error(data.error_message);
+				}
+
 				setPredictions(data.predictions);
 			} catch (e) {
-				console.error(e);
+				toast.error(String(e));
 			} finally {
 				setIsAutocompleteLoading(false);
 			}

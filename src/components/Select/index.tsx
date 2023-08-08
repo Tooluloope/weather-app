@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { usePlacesAutocomplete } from "../utils/usePlacesAutoComplete";
 import { WeatherResponseData } from "../utils/types";
 import { useStore } from "@/lib/store";
+import toast from "react-hot-toast";
 
 const Select = React.forwardRef((_, ref: React.Ref<{ focus: () => void }>) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -54,11 +55,15 @@ const Select = React.forwardRef((_, ref: React.Ref<{ focus: () => void }>) => {
 			);
 			const weatherData = (await weatherResponse.json()) as WeatherResponseData;
 
+			if (!weatherResponse.ok || weatherData.error_message) {
+				throw new Error(weatherData.error_message); // or handle more specifically based on status code
+			}
+
 			setWeatherData(weatherData);
 			setSelectedOption(place);
 			setIsOpen(false);
 		} catch (e) {
-			console.error(e);
+			toast.error(String(e));
 		} finally {
 			setIsLoading(false);
 		}

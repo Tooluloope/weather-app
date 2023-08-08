@@ -5,11 +5,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const { q, days } = req.query;
 
 	if (!q) {
-		return res.status(400).send('Query parameter "q" is required');
+		return res
+			.status(400)
+			.send({ error_message: 'Query parameter "q" is required' });
 	}
 
 	if (!days) {
-		return res.status(400).send('Query parameter "days" is required');
+		return res
+			.status(400)
+			.send({ error_message: 'Query parameter "days" is required' });
 	}
 
 	try {
@@ -26,8 +30,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		res.status(200).json(response.data);
 	} catch (error) {
-		console.error(error);
-		res.status(500).send("Error connecting to Weather API");
+		res.status(500).send({ error_message: "Error connecting to Weather API" });
 	}
 };
 

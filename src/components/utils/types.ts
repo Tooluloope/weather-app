@@ -3,6 +3,7 @@ export interface WeatherResponseData {
 	current: Current;
 	forecast: Forecast;
 	alerts: Alerts;
+	error_message: string;
 }
 
 export interface Location {

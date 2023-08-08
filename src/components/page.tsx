@@ -1,4 +1,5 @@
 import { createContext, useRef } from "react";
+import { Toaster } from "react-hot-toast";
 
 import Navbar from "./Navbar";
 import Body from "./Body";
@@ -28,6 +29,7 @@ export default function Page() {
 
 				{hasData ? <Body /> : <EmptyState />}
 			</div>
+			<Toaster />
 		</InputFocusContext.Provider>
 	);
 }
