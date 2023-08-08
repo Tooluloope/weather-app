@@ -87,6 +87,14 @@ const CurrentWeather = () => {
 							Wind
 						</p>
 					</div>
+					<div>
+						<p className="text-gray-900 dark:text-gray-100 text-xl ">
+							{current.humidity}
+						</p>
+						<p className="text-gray-900 dark:text-gray-100 text-xl opacity-50">
+							Humidity
+						</p>
+					</div>
 				</div>
 			</div>
 		</>
