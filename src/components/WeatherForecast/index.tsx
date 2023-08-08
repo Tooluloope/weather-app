@@ -5,9 +5,9 @@ const WeatherForecast = () => {
 	const forecast = useStore(store => store.weatherData.forecast.forecastday);
 	return (
 		<div className=" my-5">
-			<p className="w-full mb-5 text-xl md:text-2xl">Next 5 days</p>
+			<p className="w-full mb-5 text-xl md:text-2xl">Next 6 days</p>
 			<div className="w-full">
-				{forecast.slice(1, 6).map((day, index) => (
+				{forecast.slice(1).map((day, index) => (
 					<WeatherDailyCard
 						key={index}
 						date={day.date}

@@ -3,7 +3,7 @@ import { usePlacesAutocomplete } from "../utils/usePlacesAutoComplete";
 import { WeatherResponseData } from "../utils/types";
 import { useStore } from "@/lib/store";
 
-const Select = () => {
+const Select = React.forwardRef((_, ref: React.Ref<{ focus: () => void }>) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [search, setSearch] = useState("");
 	const [selectedOption, setSelectedOption] = useState("");
@@ -12,6 +12,8 @@ const Select = () => {
 		selectedOption
 	);
 	const wrapperRef = useRef<HTMLDivElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
+
 	const [setIsLoading, setWeatherData] = useStore(store => [
 		store.setIsLoading,
 		store.setWeatherData,
@@ -32,6 +34,12 @@ const Select = () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, []);
+
+	React.useImperativeHandle(ref, () => ({
+		focus: () => {
+			inputRef.current?.focus();
+		},
+	}));
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(e.target.value);
@@ -61,6 +69,7 @@ const Select = () => {
 			ref={wrapperRef}
 		>
 			<input
+				ref={inputRef}
 				type="text"
 				placeholder="Search for cities"
 				value={search}
@@ -92,6 +101,6 @@ const Select = () => {
 			)}
 		</div>
 	);
-};
+});
 
 export default Select;
