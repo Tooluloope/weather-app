@@ -30,7 +30,9 @@ const CurrentWeather = () => {
 						className=" w-40 h-40 mx-auto "
 					/>
 					<div className=" w-1/2 shrink-0">
-						<p className=" text-5xl md:text-7xl  mb-2">{current.temp_c}°C</p>
+						<p className=" text-5xl md:text-6xl lg:text-7xl  mb-2">
+							{current.temp_c}°C
+						</p>
 						<p className=" text-xl md:text-2xl">{current.condition.text}</p>
 					</div>
 				</div>
