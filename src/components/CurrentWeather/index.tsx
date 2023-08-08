@@ -71,7 +71,7 @@ const CurrentWeather = () => {
 					</div>
 					<div>
 						<p className="text-gray-900 dark:text-gray-100 text-xl ">
-							{forecast.forecastday[0].day.daily_chance_of_rain}
+							{forecast.forecastday[0].day.daily_chance_of_rain}%
 						</p>
 						<p className="text-gray-900 dark:text-gray-100 text-xl opacity-50">
 							Rain
