@@ -87,6 +87,6 @@ it("handles a fetch with an error response", async () => {
 	);
 
 	await waitFor(() => {
-		expect(getByText(`Error: ${errorMessage}`)).toBeInTheDocument();
+		expect(getByText(errorMessage)).toBeInTheDocument();
 	});
 });

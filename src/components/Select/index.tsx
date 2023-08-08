@@ -63,7 +63,9 @@ const Select = React.forwardRef((_, ref: React.Ref<{ focus: () => void }>) => {
 			setSelectedOption(place);
 			setIsOpen(false);
 		} catch (e) {
-			toast.error(String(e));
+			if (e instanceof Error) {
+				toast.error(e.message);
+			}
 		} finally {
 			setIsLoading(false);
 		}
